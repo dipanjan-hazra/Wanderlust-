@@ -1,0 +1,46 @@
+
+<%layout("layouts/boilerplate")%>
+<body>
+    <div class="row">
+        <div class="col-8 offset-3" >
+                <h2 class="mt-2">Listing details</h2>
+
+        </div>
+        
+        <div class="col-6 offset-3 mt-2">
+
+            <div class="card show-card">
+            <img src="<%=listing_data.image.url%>" class="card-img-top show-img" alt="listing_image">
+            <div class="card-body">
+            <h5 class="card-title"><%=listing_data.title %></h5>
+            <p class="card-text">
+                <%=listing_data.description %>
+                <br>
+                <b>
+                &#8377;<%= listing_data.price.toLocaleString    ("en-in") %>
+                </b>      <!-- // // this toLocaleString give  coma in way indian  -->
+                <br>
+            <b>
+                <%= listing_data.location %> ,
+                <%= listing_data.country %>
+             </b>
+            </p>
+        </div>
+
+
+        <div class="btns">
+            <form method="get" action="/listings/<%=listing_data._id%>/edit" class="col-1 mt-4 offset-3">
+            <button class="btn btn-dark edit-btn">Edit</button>
+             </form>
+             <!-- <a href="/listings/<%=listing_data._id%>/edit">Edit</a> -->
+
+             <form method="post" action="/listings/<%=listing_data._id%>?_method=DELETE" class="col-6 offset-2 mt-4">
+              <button class="btn btn-dark del-btn">Delete</button>
+         </form>
+        </div>
+    
+
+    </div>
+</div>
+
+</body>
