@@ -1,32 +1,45 @@
-<%layout("/layouts/boilerplate") %>
+<% layout('layouts/boilerplate') %>
+
 <body>
     <div class="row mt-3">
         <div class="col-8 offset-2">
                <h2> Edit Listing</h2>
     <hr>
-    <form method="post" action="/listings/<%=listing_data._id%>?_method=PUT">
+    <form method="post" action="/listings/<%=listing_data._id%>?_method=PUT" class="needs-validation" novalidate>
         <div class="mb3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="listings[title]"class="form-control" value="<%= listing_data.title %>">
-        </div>
+                <input type="text" name="listings[title]"class="form-control" value="<%= listing_data.title %>" required>
+        
+            <div class="valid-feedback">Title look good</div>
+            <div class="invalid-feedback">Title required</div>
+            </div>
         
        <div class="mb-3">
              <label for="Description" class="form-label">Description</label>
-             <textarea name="listings[description]" class="form-control"><%= listing_data.description%></textarea>
-       </div>
+             <textarea name="listings[description]" class="form-control" required><%= listing_data.description%></textarea>
+             <div class="valid-feedback">Description Done </div>
+            <div class="invalid-feedback">Please give  a small description </div>
+            </div>
        <div class="mb-3">
               <label for="Image" class="form-label">image</label>
-           <input name="listings[image][url]" type="text" value="<%= listing_data.image.url %>" class="form-control">
-       </div>
+           <input name="listings[image][url]" type="text" value="<%= listing_data.image.url %>" class="form-control" required>
+             <div class="valid-feedback">Thanks for  image referece </div>
+            <div class="invalid-feedback">Image  should be  provide </div>
+        </div>
          <div class="row">
             <div class="mb-3 col-md-4">
             <label for="price" class="form-label">price</label>
-             <input type="number" name="listings[price]" value="<%= listing_data.price%>"class="form-control">
-             </div>
+             <input type="number" name="listings[price]" value="<%= listing_data.price%>"class="form-control" required>
+                
+                      <div class="valid-feedback">Price Done</div>
+            <div class="invalid-feedback">Give a valid price</div>
+            </div>
 
              <div class="mb-3 col-md-4 ">
             <label for="location" class="form-label">location</label>
-            <input type="text" name="listings[location]" value="<%= listing_data.location %>"class="form-control">
+            <input type="text" name="listings[location]" value="<%= listing_data.location %>"class="form-control" required>
+            <div class="valid-feedback">New location Done</div>
+            <div class="invalid-feedback">Give aqurate location</div>
             </div>
          </div>
        
