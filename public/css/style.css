@@ -1,4 +1,4 @@
-.body{
+body{
   font-family: "Plus Jakarta Sans", sans-serif !important;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,6 @@
 
 
 /* footer */
-
 .f-info-links a{
     text-decoration: none ;
     color:#222222 ;
@@ -33,7 +32,7 @@
 }
 .f-info-links,.f-info-socials,.f-info-brand{
     width: 100%;
-    /* vertical-align:middle; */
+    vertical-align:middle;
     display:flex ;
     align-items: center;
     justify-content: center;

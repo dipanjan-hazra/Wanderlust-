@@ -37,7 +37,7 @@
 
              <div class="mb-3 col-md-4 ">
             <label for="location" class="form-label">location</label>
-            <input type="text" name="listings[location]" value="<%= listing_data.location %>"class="form-control" required>
+            <input type="text" name="listings[location]"  value="<%= listing_data.location %>"class="form-control" required>
             <div class="valid-feedback">New location Done</div>
             <div class="invalid-feedback">Give aqurate location</div>
             </div>
@@ -46,7 +46,7 @@
        
     <div class="mb-3">
         <label for="country" class="form-label"> country </label>
-         <input type="text" name="listings[country]" value="<%= listing_data.country %>"class="form-control">
+         <input type="text" name="listings[country]" pattern="[A-Za-z\s]+" title="Only letters allowed"  value="<%= listing_data.country %>"class="form-control">
     </div>
        
         

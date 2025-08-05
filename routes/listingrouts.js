@@ -32,7 +32,12 @@ router.get("/new",(req,res)=>{
 router.get("/:id",WrapAsync(async (req,res)=>{
     let {id} = req.params;
     const listing_data = await listing.findById(id).populate("reviews");
+    if(!listing_data){
+        req.flash("error","Listing You  want  to  access doesnot exist !")
+       return res.redirect("/listings");
+    }
     res.render("listings/show.ejs",{listing_data});
+ 
 }));
 
 //create Route
@@ -40,6 +45,7 @@ router.post("/",validateListing, WrapAsync(async(req,res)=>{
     const list = new listing(req.body.listings);
     console.log(list);
     await list.save();
+    req.flash("success","new  listings Added");
     res.redirect("/listings");
 }));
 
@@ -47,20 +53,27 @@ router.post("/",validateListing, WrapAsync(async(req,res)=>{
 router.get("/:id/edit",WrapAsync(async (req,res)=>{
    let {id} = req.params;
     const listing_data = await listing.findById(id);
+    if(!listing_data){
+        req.flash("error","Listing You  want  to  edit doesnot exist !")
+       return res.redirect("/listings");
+    }
     res.render("listings/edit.ejs",{listing_data});
 })) ;
 //update route 
-router.put("/:id",WrapAsync(async(req,res)=>{ 
+router.put("/:id",validateListing,WrapAsync(async(req,res)=>{ 
     let {id} = req.params;
  await listing.findByIdAndUpdate(id,{...req.body.listings});
+  req.flash("success","Listing  Updated successfully");
+
  res.redirect(`/listings/${id}`);
-}),validateListing);
+}));
 
 //Delete route
 router.delete("/:id",WrapAsync(async(req,res)=>{
     let {id} = req.params;
 const del_list = await listing.findByIdAndDelete(id);
 console.log(del_list)
+ req.flash("success","Listing  deleted successfully");
     res.redirect("/listings");
 }));
 
