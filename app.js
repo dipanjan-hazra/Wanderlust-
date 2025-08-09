@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !="production"){
+require('dotenv').config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -5,15 +9,12 @@ const listing = require("./models/listing.js");
 const  path =require("path");
 const methodOverride= require("method-override");
 const ejsMate = require("ejs-mate");
-// const WrapAsync = require("./utils/WrapAsync.js"); //review -donelis -done
 const ExpressError = require("./utils/ExpressError.js");
-// const { error } = require("console");
-// const {listingSchema} = require("./schema.js");// dels
-// const Review = require("./models/review.js");
-// const {reviewSechema} = require("./schema.js");
+
 
 // session and  connect-flash 👇
 const session = require("express-session");
+const MongoStore = require('connect-mongo'); //connect-mongo
 const flash  = require("connect-flash");
 
 
@@ -31,8 +32,7 @@ const  listingrout= require("./routes/listingrouts.js");
 const userRoute = require("./routes/userRoute.js");
 
 
-mongoUrl ="mongodb://127.0.0.1:27017/wanderlust";
-
+const dbUrl = process.env.ATLAS_DB_URL;
 
 main().then(()=>{
     console.log("connected to DB");
@@ -41,7 +41,7 @@ main().then(()=>{
 });
 
 async function main() {
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(dbUrl);
 }
 
 app.set("view engine","ejs");
@@ -49,11 +49,24 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
-app.use(express.static(path.join(__dirname,"/public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
+
+const store =  MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600,
+});
+
+store.on("error",()=>{
+    console.log("error on mongo url store");
+})
 
 const sessionOptions ={
-    secret : "mysupersecret code",
+    store,
+    secret : process.env.SECRET,
     resave : false ,
     saveUninitialized:true,
     cookie:{
@@ -62,10 +75,6 @@ const sessionOptions ={
         httponly:true, // for prevent cross scripting  attack  
     }
 };
-// basic  route 
-app.get("/",(req,res)=>{
-    res.send("Working");
-});
 
 
 

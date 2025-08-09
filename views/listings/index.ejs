@@ -1,14 +1,94 @@
 <%layout("/layouts/boilerplate") %>
 <body>
-    <!--  print success messages -->
-    <h1>All List</h1>
+  <style>
+    #filters{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .filter{
+      text-align: center;
+      margin-right: 2rem;
+      margin-top: 2rem;
+      opacity:0.5 ;
+    }
+    .filter:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+    .filter p{
+      font-size: 0.8rem;
+    }
 
-    <!-- <form method="get" action="/listings/new">
-      <button>Add New place</button>
-    </form> -->
-
-
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    .tax-info{
+      display:none;
+    }
+    .tax-toggle{
+      border: 1px solid black;
+      border-radius: 1rem;
+      height: 2.5rem;
+      padding: 1rem;
+      margin-left:2rem;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+    <div id="filters">
+          <div class="filter">
+           <div> <i class="fa-solid fa-fire-flame-curved"></i> </div>
+           <p> Trending</p>
+          </div>
+           <div class="filter">
+           <div><i class="fa-solid fa-bed"></i></div>
+           <p>Room</p>
+          </div>
+           <div class="filter">
+           <div> <i class="fa-solid fa-city"></i> </div>
+           <p>Iconic cities</p>
+          </div>
+           <div class="filter">
+           <div><i class="fa-solid fa-mountain-sun"></i></div>
+           <p>Mountains</p>
+          </div>
+           <div class="filter">
+           <div><i class="fa-solid fa-masks-theater"></i> </div>
+           <p>Entertainment</p>
+          </div>
+           <div class="filter">
+           <div><i class="fa-solid fa-water"></i></div>
+           <p>Lakefront</p>
+          </div>
+           <div class="filter">
+           <div> <i class="fa-solid fa-umbrella-beach"></i> </div>
+           <p>Beach</p>
+          </div>
+           <div class="filter">
+           <div><i class="fa-solid fa-om"></i></div>
+           <p>Temple</p>
+          </div>
+          <div class="filter">
+           <div><i class="fa-solid fa-chess-rook"></i></div>
+           <p>Castels</p>
+          </div>
+          <div class="filter">
+           <div><i class="fa-solid fa-person-swimming"></i></div>
+           <p>Adventure</p>
+          </div>
+          <div class="filter">
+           <div><i class="fa-solid fa-utensils"></i></div>
+           <p>Resturants</p>
+          </div>
+            <div class="filter">
+           <div><i class="fa-solid fa-campground"></i></div>
+           <p>Adventure</p>
+          </div>
+          <div class="tax-toggle ">
+              <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Display after Taxes</label>
+            </div>
+          </div>
+    </div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
   <%for(el of all){ %>
     <a href="/listings/<%=el._id%>"  class="listing-links">
         <div class="card col listing-card">
@@ -20,13 +100,30 @@
       <br> 
       &#8377; <%= el.price.toLocaleString
          ("en-in") %>/night
+           <i class="tax-info">&nbsp; &nbsp;+18% gst</i>
     </p>
+  
     </div>
   </div>
     </a>
 
 <% } %>
 </div>
+
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+   let taxInfo =document.getElementsByClassName("tax-info");
+    for(info of taxInfo){
+      if(info.style.display != "inline"){
+      info.style.display = "inline";
+      }else{
+        info.style.display ="none";
+      }
+    }
+  })
+</script>
 
   
 
