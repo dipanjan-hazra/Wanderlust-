@@ -47,7 +47,6 @@ module.exports.NewListing = async(req,res)=>{
 
     list.image ={url,filename};
     list.geometry =response.body.features[0].geometry;
-
    let  save_list = await list.save();
     console.log("savelisting - "+save_list)
     req.flash("success","new  listings Added");

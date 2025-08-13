@@ -120,3 +120,6 @@ object-fit: cover;
    width: 80vh;
 }
 
+.filter{
+    background-color: gray;
+}

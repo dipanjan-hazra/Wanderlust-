@@ -1,4 +1,4 @@
-const { ref } = require("joi");
+const { ref, string } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review");
@@ -34,9 +34,19 @@ description: String,
       type: [Number],
       required: true
     }
+  },
+  filter: {
+    // Correct: declare that "filter" is an object, and inside it,
+    // "type" is a string with an enum.
+    type: { type: String, enum: [
+      'Trending','room','iconic cities','moutains','entertainment',
+      'lakefront','beach','temple','castels','adventure','resturants','adventures'
+    ], required: true }
   }
-
 });
+
+
+
 
 
 listingSchema.post("findOneAndDelete",async(listing)=>{
