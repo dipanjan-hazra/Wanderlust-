@@ -8,7 +8,7 @@ const{storage}=require("../cloudConfig.js");
 
 const upload = multer({storage});
 //controler 
-const listingsController = require('..//controlers/listing.js');
+const listingsController = require('../controlers/listing.js');
 
 
 // new listing adding -- 
