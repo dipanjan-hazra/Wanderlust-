@@ -35,15 +35,17 @@ description: String,
       required: true
     }
   },
-  filter: {
-    // Correct: declare that "filter" is an object, and inside it,
-    // "type" is a string with an enum.
-     type: String,
-      enum: [
-      'Trending','room','iconic cities','moutains','entertainment',
-      'lakefront','beach','temple','castels','adventure','resturants','adventures'
-    ], required: true 
-  }
+  FILTER_SLUGS : [
+  'trending','room','iconic-cities','mountains','entertainment',
+  'lakefront','beach','temple','castles','adventure','restaurants','five-star'
+],
+ filter: {
+    type: String,
+    enum: FILTER_SLUGS,
+    required: true,
+    lowercase: true,      // store normalized
+    trim: true
+  },
 });
 
 
@@ -57,3 +59,4 @@ listingSchema.post("findOneAndDelete",async(listing)=>{
 })
 const listing = mongoose.model("listing",listingSchema);
 module.exports = listing;
+

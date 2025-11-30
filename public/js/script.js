@@ -32,13 +32,13 @@ taxSwitch.addEventListener("click", () => {
     }
 });
 
-
-// filter click
+// public/js/filters.js
 document.querySelectorAll(".filter").forEach(el => {
-el.addEventListener("click", () => {
-const category = el.dataset.filter; // read from data-filter
-if (!category) return; // guard: avoid /undefined
-window.location.href =` /listings/filter/${encodeURIComponent(category)}`;
+  el.addEventListener("click", () => {
+    const category = el.dataset.filter;
+    if (!category) return;
+    window.location.href = `/listings/filter/${encodeURIComponent(category)}`;
+  });
 });
-});
+
 

@@ -92,20 +92,28 @@ console.log(del_list)
 } 
 
 
-module.exports.filter = async (req, res) => {
-  const catagory = req.params.filter;
-  try {
-    const hotels = await listing.find({ filter:catagory });
+module.exports.filterBySlug = async (req, res) => {
+  const slug = (req.params.slug || '').trim().toLowerCase();
+  if (!slug) {
+    req.flash('error', 'Invalid filter');
+    return res.redirect('/listings');
+  }
 
-    if (hotels.length === 0) {
-      req.flash("error", `Oops! No hotels found for "${catagory}"`);
-      return res.redirect("/listings");
+  try {
+    // exact, case-insensitive match
+    const regex = new RegExp(`^${escapeRegExp(slug)}$`, 'i');
+    const hotels = await Listing.find({ filter: regex }).lean();
+
+    if (!hotels || hotels.length === 0) {
+      req.flash('error', `Oops! No hotels found for "${slug}"`);
+      return res.redirect('/listings');
     }
-    req.flash("success",`showing results for${catagory}`);
-    res.render("listings/index.ejs", { all: hotels });
+
+    req.flash('success', `Showing results for ${slug}`);
+    return res.render('listings/index.ejs', { all: hotels, activeFilter: slug });
   } catch (err) {
     console.error(err);
-    req.flash("error", "Something went wrong");
-    return res.redirect("/listings");
+    req.flash('error', 'Something went wrong');
+    return res.redirect('/listings');
   }
-}
+};

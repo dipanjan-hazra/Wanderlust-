@@ -7,8 +7,8 @@ const multer  = require('multer');
 const{storage}=require("../cloudConfig.js");
 
 const upload = multer({storage});
-//controler -- 
-const listingControler = require("../controlers/listing.js");
+//controler 
+const listingsController = require('../controllers/listingsController');
 
 
 // new listing adding -- 
@@ -19,7 +19,13 @@ router.route("/")
     .get(WrapAsync(listingControler.index)) // index route
     .post(isLoggedin,upload.single("listings[image]"), WrapAsync(listingControler.NewListing)) //create route
 
-router.route("/filter/:catagory").get(WrapAsync(listingControler.filter)) ;
+// routes/listings.js (express)
+
+
+router.get('/filter/:slug', listingsController.filterBySlug);
+
+
+
 
 router.route("/:id")
     .get(WrapAsync(listingControler.show)) //show page
