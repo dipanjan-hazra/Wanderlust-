@@ -32,55 +32,66 @@
       align-items: center;
     }
   </style>
+  <% if (success && success.length) { %>
+  <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
     <div id="filters">
-          <div class="filter">
+          <div class="filter"data-filter="Trending">
            <div> <i class="fa-solid fa-fire-flame-curved"></i> </div>
            <p> Trending</p>
           </div>
-           <div class="filter">
+           <div class="filter"data-filter="room">
            <div><i class="fa-solid fa-bed"></i></div>
            <p>Room</p>
           </div>
-           <div class="filter">
+           <div class="filter" data-filter="iconic cities">
            <div> <i class="fa-solid fa-city"></i> </div>
            <p>Iconic cities</p>
           </div>
-           <div class="filter">
+           <div class="filter" data-filter="mountains">
            <div><i class="fa-solid fa-mountain-sun"></i></div>
            <p>Mountains</p>
           </div>
-           <div class="filter">
+           <div class="filter" data-filter="entertainment">
            <div><i class="fa-solid fa-masks-theater"></i> </div>
            <p>Entertainment</p>
           </div>
-           <div class="filter">
+           <div class="filter"data-filter="lakefront">
            <div><i class="fa-solid fa-water"></i></div>
            <p>Lakefront</p>
           </div>
-           <div class="filter">
+           <div class="filter" data-filter="beach">
            <div> <i class="fa-solid fa-umbrella-beach"></i> </div>
            <p>Beach</p>
           </div>
-           <div class="filter">
+           <div class="filter" data-filter="temple">
            <div><i class="fa-solid fa-om"></i></div>
            <p>Temple</p>
           </div>
-          <div class="filter">
+          <div class="filter" data-filter="castels">
            <div><i class="fa-solid fa-chess-rook"></i></div>
            <p>Castels</p>
           </div>
-          <div class="filter">
-           <div><i class="fa-solid fa-person-swimming"></i></div>
-           <p>Adventure</p>
-          </div>
-          <div class="filter">
+          <div class="filter"data-filter="resturants">
            <div><i class="fa-solid fa-utensils"></i></div>
            <p>Resturants</p>
           </div>
-            <div class="filter">
+            <div class="filter" data-filter="adventure">
            <div><i class="fa-solid fa-campground"></i></div>
            <p>Adventure</p>
           </div>
+
+           <div class="filter" data-filter="five-star">
+           <div><i class="fa-solid fa-star"></i></div>
+           <p>Star</p>
+          </div>
+          </div>
+           
           <div class="tax-toggle ">
               <div class="form-check-reverse form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
@@ -109,21 +120,6 @@
 
 <% } %>
 </div>
-
-
-<script>
-  let taxSwitch = document.getElementById("switchCheckDefault");
-  taxSwitch.addEventListener("click",()=>{
-   let taxInfo =document.getElementsByClassName("tax-info");
-    for(info of taxInfo){
-      if(info.style.display != "inline"){
-      info.style.display = "inline";
-      }else{
-        info.style.display ="none";
-      }
-    }
-  })
-</script>
 
   
 

@@ -47,8 +47,12 @@ module.exports.NewListing = async(req,res)=>{
 
     list.image ={url,filename};
     list.geometry =response.body.features[0].geometry;
+    //filter 
+    let c_filter = req.body.listings.filter 
+    list.filter = c_filter;
+
    let  save_list = await list.save();
-    console.log("savelisting - "+save_list)
+    console.log("savelisting - "+save_list.filter)
     req.flash("success","new  listings Added");
     res.redirect("/listings");
 }
@@ -86,3 +90,22 @@ console.log(del_list)
  req.flash("success","Listing  deleted successfully");
     res.redirect("/listings");
 } 
+
+
+module.exports.filter = async (req, res) => {
+  const catagory = req.params.filter;
+  try {
+    const hotels = await listing.find({ filter:catagory });
+
+    if (hotels.length === 0) {
+      req.flash("error", `Oops! No hotels found for "${catagory}"`);
+      return res.redirect("/listings");
+    }
+    req.flash("success",`showing results for${catagory}`);
+    res.render("listings/index.ejs", { all: hotels });
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Something went wrong");
+    return res.redirect("/listings");
+  }
+}

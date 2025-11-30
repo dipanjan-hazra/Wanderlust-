@@ -16,3 +16,29 @@
     }, false)
   })
 })(); 
+
+
+
+// tax switch
+let taxSwitch = document.getElementById("switchCheckDefault");
+taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for (let info of taxInfo) {
+        if (info.style.display !== "inline") {
+            info.style.display = "inline";
+        } else {
+            info.style.display = "none";
+        }
+    }
+});
+
+
+// filter click
+document.querySelectorAll(".filter").forEach(el => {
+el.addEventListener("click", () => {
+const category = el.dataset.filter; // read from data-filter
+if (!category) return; // guard: avoid /undefined
+window.location.href =` /listings/filter/${encodeURIComponent(category)}`;
+});
+});
+

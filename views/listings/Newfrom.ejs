@@ -8,7 +8,7 @@
             <form method="post" action="/listings"class="needs-validation"  novalidate  enctype="multipart/form-data">
         <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-            <input filter="text" name="listings[title]" placeholder="Add a catchy title" class="form-control" required>
+            <input type="text" name="listings[title]" placeholder="Add a catchy title" class="form-control" required>
 
             <div class="valid-feedback">Title look good</div>
             <div class="invalid-feedback">Title required</div>
@@ -25,51 +25,64 @@
          <!-- File Option -->
           <div class="mb-3">
                   <label for="Imgae" class="form-label">Upload image</label>
-                 <input name="listings[image]" filter="file"  class="form-control" >
+                 <input name="listings[image]" type="file"  class="form-control" >
          </div>
      <div class="row">
             <div  class="mb-3 col-md-4" >
                   <label for="price" class="form-label">price</label>
-                 <input filter="number" name="listings[price]" placeholder="enter price" class="form-control" required>
+                 <input type="number" name="listings[price]" placeholder="enter price" class="form-control" required>
 
                    <div class="valid-feedback">Price Done</div>
             <div class="invalid-feedback">Give a valid price</div>
          </div>
           <div class="mb-3 col-md-8">
               <label for="location" class="form-label">location</label>
-               <input filter="text" name="listings[location]" placeholder="location" class="form-control" required>
+               <input type="text" name="listings[location]" placeholder="location" class="form-control" required>
                   <div class="valid-feedback">New location Done</div>
             <div class="invalid-feedback">Give aqurate location</div>
 
          </div>
     </div>
-         <div class="row ">
-         <div class="mb-2 col-md-4 ">
+         
+         <!-- <div class="mb-2">
                 <label for="country" class="form-label"> country </label>
-                <input filter="text" name="listings[country]"  pattern="[A-Za-z\s]+" title="Only letters allowed" placeholder="enter country name" class="form-control" required>
+                <input type="text" name="listings[country]"  pattern="[A-Za-z\s]+" title="Only letters allowed" placeholder="enter country name" class="form-control" required>
                   <div class="valid-feedback">done</div>
             <div class="invalid-feedback">country should be validate </div>
-         </div>
-    <div class="mb-3 col-md-8">
-  <label for="filter" class="form-label">Choose Type according to your place</label>
-  <select id="filter" name="listings[filter]" class="form-control line-input" required>
-    <option value="" disabled selected>Select here</option>
-    <option value="Trending">Trending</option>
-    <option value="room">Room</option>
-    <option value="iconic cities">Iconic Cities</option>
-    <option value="moutains">Mountains</option>
-    <option value="entertainment">Entertainment</option>
-    <option value="lakefront">Lakefront</option>
-    <option value="beach">Beach</option>
-    <option value="temple">Temple</option>
-    <option value="castels">Castels</option>
-    <option value="adventure">Adventure</option>
-    <option value="resturants">Restaurants</option>
-    <option value="adventures">Adventures</option>
-  </select>
-  <div class="invalid-feedback">Please select a type</div>
-    </div>
-</div>
+         </div> -->
+  <div class="row">
+  <!-- Country -->
+  <div class="mb-3 col-md-4">
+    <label for="country" class="form-label">Country</label>
+    <input type="text" id="country" name="listings[country]" pattern="[A-Za-z\s]+" title="Only letters allowed"
+      placeholder="Enter country name" class="form-control" required>
+    <div class="valid-feedback">Done</div>
+    <div class="invalid-feedback">Country should be valid</div>
+  </div>
+         <!-- Type Filter -->
+      <div class="mb-3 col-md-8">
+        <label for="filter" class="form-label">Choose Type according to your place</label>
+        <select id="filter" name="listings[filter]" class="form-control line-input" required>
+      <option value="" disabled selected>Select here</option>
+      <option value="Trending">Trending</option>
+      <option value="room">Room</option>
+      <option value="iconic cities">Iconic Cities</option>
+      <option value="moutains">Mountains</option>
+      <option value="entertainment">Entertainment</option>
+      <option value="lakefront">Lakefront</option>
+      <option value="beach">Beach</option>
+      <option value="temple">Temple</option>
+      <option value="castels">Castels</option>
+      <option value="adventure">Adventure</option>
+      <option value="resturants">Restaurants</option>
+      <option value="five-star">Five star</option>
+    </select>
+    <div class="invalid-feedback">Please select a type</div>
+  </div>
+  </div>
+
+         <!-- button -->
+
         <button class="btn btn-dark add-btn mt-3">add</button> 
     </form>
     </div>

@@ -19,6 +19,7 @@ router.route("/")
     .get(WrapAsync(listingControler.index)) // index route
     .post(isLoggedin,upload.single("listings[image]"), WrapAsync(listingControler.NewListing)) //create route
 
+router.route("/filter/:catagory").get(WrapAsync(listingControler.filter)) ;
 
 router.route("/:id")
     .get(WrapAsync(listingControler.show)) //show page
@@ -26,4 +27,12 @@ router.route("/:id")
     .delete(isLoggedin,isOwner,WrapAsync(listingControler.DeleteListing)); //Delete listing
 
 router.get("/:id/edit",isLoggedin,isOwner,WrapAsync(listingControler.editPage));
+// module.exports = router;
+
+
+
+
+
+// GET filter results
+
 module.exports = router;

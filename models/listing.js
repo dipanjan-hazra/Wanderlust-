@@ -38,10 +38,11 @@ description: String,
   filter: {
     // Correct: declare that "filter" is an object, and inside it,
     // "type" is a string with an enum.
-    type: { type: String, enum: [
+     type: String,
+      enum: [
       'Trending','room','iconic cities','moutains','entertainment',
       'lakefront','beach','temple','castels','adventure','resturants','adventures'
-    ], required: true }
+    ], required: true 
   }
 });
 
