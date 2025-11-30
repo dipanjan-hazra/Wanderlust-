@@ -54,26 +54,30 @@
         <label for="country" class="form-label"> country </label>
          <input type="text" name="listings[country]" pattern="[A-Za-z\s]+" title="Only letters allowed"  value="<%= listing_data.country %>"class="form-control">
     </div>
-         <!-- Type Filter -->
-      <div class="mb-3 col-md-8">
-        <label for="filter" class="form-label">Choose Type according to your place</label>
-        <select id="filter" name="listings[filter]" class="form-control line-input" required>
-      <option value="" disabled selected>Select here</option>
-      <option value="Trending" <%= listing_data.filter === 'Trending' ? 'selected' : '' %>>Trending</option>
-      <option value="room" <%= listing_data.filter === 'room' ? 'selected' : '' %>>Room</option>
-      <option value="iconic cities" <%= listing_data.filter === 'iconic cities' ? 'selected' : '' %>>Iconic Cities</option>
-      <option value="moutains" <%= listing_data.filter === 'moutains' ? 'selected' : '' %>>Mountains</option>
-      <option value="entertainment" <%= listing_data.filter === 'entertainment' ? 'selected' : '' %>>Entertainment</option>
-      <option value="lakefront" <%= listing_data.filter === 'lakefront' ? 'selected' : '' %>>Lakefront</option>
-      <option value="beach" <%= listing_data.filter === 'beach' ? 'selected' : '' %>>Beach</option>
-      <option value="temple" <%= listing_data.filter === 'temple' ? 'selected' : '' %>>Temple</option>
-        <option value="castels" <%= listing_data.filter === 'castels' ? 'selected' : '' %>>Castels</option>
-      <option value="resturants" <%= listing_data.filter === 'resturants' ? 'selected' : '' %>>Restaurants</option>
-      <option value="adventures" <%= listing_data.filter === 'adventure' ? 'selected' : '' %>>Adventures</option>
-     <option value="five-star" <%= listing_data.filter === 'five-star' ? 'selected' : '' %>>five-star</option>
+   <div class="mb-3 col-md-8">
+  <label for="filter" class="form-label">Choose Type according to your place</label>
 
-    </select>
-    <div class="invalid-feedback">Please select a type</div>
+  <select id="filter" name="listings[filter]" class="form-control line-input" required>
+    <option value="" disabled selected>Select here</option>
+
+    <option value="trending" <%= listing_data.filter === 'trending' ? 'selected' : '' %>>Trending</option>
+    <option value="room" <%= listing_data.filter === 'room' ? 'selected' : '' %>>Room</option>
+    <option value="iconic-cities" <%= listing_data.filter === 'iconic-cities' ? 'selected' : '' %>>Iconic Cities</option>
+    <option value="mountains" <%= listing_data.filter === 'mountains' ? 'selected' : '' %>>Mountains</option>
+    <option value="entertainment" <%= listing_data.filter === 'entertainment' ? 'selected' : '' %>>Entertainment</option>
+    <option value="lakefront" <%= listing_data.filter === 'lakefront' ? 'selected' : '' %>>Lakefront</option>
+    <option value="beach" <%= listing_data.filter === 'beach' ? 'selected' : '' %>>Beach</option>
+    <option value="temple" <%= listing_data.filter === 'temple' ? 'selected' : '' %>>Temple</option>
+    <option value="castles" <%= listing_data.filter === 'castles' ? 'selected' : '' %>>Castles</option>
+    <option value="restaurants" <%= listing_data.filter === 'restaurants' ? 'selected' : '' %>>Restaurants</option>
+    <option value="adventure" <%= listing_data.filter === 'adventure' ? 'selected' : '' %>>Adventure</option>
+    <option value="five-star" <%= listing_data.filter === 'five-star' ? 'selected' : '' %>>Five Star</option>
+
+  </select>
+
+  <div class="invalid-feedback">Please select a type</div>
+</div>
+
   </div>
   </div>
 
