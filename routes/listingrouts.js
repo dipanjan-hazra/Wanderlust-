@@ -21,7 +21,7 @@ router.route("/")
 
 // routes/listings.js (express)
 
-router.get('/filter/:slug', listingsControler.filterBySlug);
+router.get('/filter/:slug', listingControler.filterBySlug);
 
 
 
