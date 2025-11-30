@@ -7,8 +7,8 @@ const multer  = require('multer');
 const{storage}=require("../cloudConfig.js");
 
 const upload = multer({storage});
-//controler 
-const listingsController = require('../controlers/listing.js');
+//controler -- 
+const listingControler = require("../controlers/listing.js");
 
 
 // new listing adding -- 
@@ -21,8 +21,7 @@ router.route("/")
 
 // routes/listings.js (express)
 
-
-router.get('/filter/:slug', listingsController.filterBySlug);
+router.get('/filter/:slug', listingsControler.filterBySlug);
 
 
 
