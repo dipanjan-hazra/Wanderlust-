@@ -2,6 +2,10 @@ const { ref, string } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review");
+  const FILTER_SLUGS =[
+  'trending','room','iconic-cities','mountains','entertainment',
+  'lakefront','beach','temple','castles','adventure','restaurants','five-star'
+];
 const listingSchema = new Schema({
  title:{
         type:String,
@@ -35,10 +39,7 @@ description: String,
       required: true
     }
   },
-  FILTER_SLUGS : [
-  'trending','room','iconic-cities','mountains','entertainment',
-  'lakefront','beach','temple','castles','adventure','restaurants','five-star'
-],
+
  filter: {
     type: String,
     enum: FILTER_SLUGS,
